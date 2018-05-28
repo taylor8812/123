@@ -1,0 +1,54 @@
+# 123
+#include<iostream>
+#include<fstream>
+#include<stdlib.h>
+#include<string.h>
+using namespace std;
+int main()
+{	
+	char info[100];
+	char date[100];
+	char diary[100];
+
+	cout<<"請輸入檔案名稱";
+	cin>>info;
+	cout<<"請輸入日期(yyyy-mm-dd)";
+	cin>>date;
+	cout<<"請輸入內容";
+	cin>>diary;
+	
+	//字串串接
+	char diary_info[200];
+	strcat(diary_info,info);
+	strcat(diary_info,"<<");
+	strcat(diary_info,date);
+	strcat(diary_info,">>");
+	strcat(diary_info,diary);
+	strcat(diary_info,"\n\n");
+	
+	//加密
+	//cout<<"請輸入個人加密密碼";
+	//int pw;
+	//cin>>pw;
+	//pw=pw%5;
+	size_t num=strlen(diary_info);//字串內容的實際長度 
+	//for(int i=0;i<num;i++)
+	//{
+	//	if(i>1)
+	//	{
+	//	diary_info[i] = diary_info[i]+(diary_info[i-1]*pw);
+	//	}else{
+	//		diary_info[i]+=pw;
+	 //		}
+//	}
+	
+	fstream file;
+	file.open(info,ios::app);
+	file.write(diary_info,num);
+	cout<<"已完成紀錄\n";
+	cout<<"<<"<<date<<">>"<<endl;
+	cout<<diary;
+	file.close();
+	
+		return 0;
+}
